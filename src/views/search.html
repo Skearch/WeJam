@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Search</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Search for Music</h1>
+        <div class="search-bar">
+            <input type="text" id="search-input" class="form-control" placeholder="Search for a music video...">
+            <button id="search-button" class="btn btn-primary">Search</button>
+        </div>
+        <div id="search-results" class="mt-4"></div>
+    </div>
+
+    <script src="/js/main.js"></script>
+    <script>
+        document.getElementById('search-button').addEventListener('click', function() {
+            const query = document.getElementById('search-input').value;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Room</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-12">
+                <h2 id="roomTitle">Music Room</h2>
+                <p class="room-info">
+                    Room: <span id="currentRoomId" class="badge badge-primary"></span>
+                    User: <span id="currentUsername" class="badge badge-secondary"></span>
+                    Current Video ID: <span id="currentVidID" class="badge badge-info"></span>
+                </p>
+            </div>
+        </div>
+
+        <div class="row d-none d-lg-flex">
+            <div class="col-lg-7">
+                <div class="card video-card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Now Playing</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div id="player" class="video-player-desktop">
+                            <p class="no-video-text">No audio selected</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="card h-100">
+                    <div class="card-header p-0">
+                        <ul class="nav nav-tabs nav-fill" id="desktopTabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="search-tab" data-toggle="tab" href="#search-content"
+                                    role="tab">
+                                    Search
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="queue-tab" data-toggle="tab" href="#queue-content" role="tab">
+                                    Queue
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="chat-tab" data-toggle="tab" href="#chat-content" role="tab">
+                                    Chat
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="users-tab" data-toggle="tab" href="#users-content" role="tab">
+                                    Users
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body tab-content-container">
+                        <div class="tab-content h-100" id="desktopTabContent">
+                            <div class="tab-pane fade show active h-100" id="search-content" role="tabpanel">
+                                <div class="h-100 d-flex flex-column">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" id="search-input"
+                                            placeholder="Search for music...">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" id="search-button">Search</button>
+                                        </div>
+                                    </div>
+                                    <div id="search-results" class="search-results-container flex-grow-1"></div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade h-100" id="queue-content" role="tabpanel">
+                                <div class="h-100 d-flex flex-column">
+                                    <h6 class="mb-3">Music Queue</h6>
+                                    <div class="queue-container flex-grow-1">
+                                        <ul id="queue-list" class="list-group list-group-flush">
+                                            <li class="list-group-item text-muted">Queue is empty</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade h-100" id="chat-content" role="tabpanel">
+                                <div class="h-100 d-flex flex-column">
+                                    <h6 class="mb-3">Chat</h6>
+                                    <div id="chat-messages" class="chat-messages-container flex-grow-1 mb-3"></div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="chat-input"
+                                            placeholder="Type a message...">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" id="chat-send">Send</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade h-100" id="users-content" role="tabpanel">
+                                <div class="h-100 d-flex flex-column">
+                                    <h6 class="mb-3">Users in Room</h6>
+                                    <div class="users-container flex-grow-1">
+                                        <ul id="users-list" class="list-unstyled"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-lg-none">
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="card video-card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Now Playing</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <div id="player-mobile" class="video-player-mobile">
+                                <p class="no-video-text">No audio selected</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <ul class="nav nav-tabs nav-fill" id="mobileTabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="mobile-search-tab" data-toggle="tab"
+                                        href="#mobile-search-content" role="tab">
+                                        Search
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="mobile-queue-tab" data-toggle="tab"
+                                        href="#mobile-queue-content" role="tab">
+                                        Queue
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="mobile-chat-tab" data-toggle="tab"
+                                        href="#mobile-chat-content" role="tab">
+                                        Chat
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="mobile-users-tab" data-toggle="tab"
+                                        href="#mobile-users-content" role="tab">
+                                        Users
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body mobile-tab-content">
+                            <div class="tab-content" id="mobileTabContent">
+                                <div class="tab-pane fade show active" id="mobile-search-content" role="tabpanel">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" id="mobile-search-input"
+                                            placeholder="Search for music...">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" id="mobile-search-button">Search</button>
+                                        </div>
+                                    </div>
+                                    <div id="mobile-search-results" class="mobile-search-results"></div>
+                                </div>
+
+                                <div class="tab-pane fade" id="mobile-queue-content" role="tabpanel">
+                                    <h6 class="mb-3">Music Queue</h6>
+                                    <ul id="mobile-queue-list" class="list-group list-group-flush">
+                                        <li class="list-group-item text-muted">Queue is empty</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tab-pane fade" id="mobile-chat-content" role="tabpanel">
+                                    <h6 class="mb-3">Chat</h6>
+                                    <div id="mobile-chat-messages" class="mobile-chat-messages mb-3"></div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="mobile-chat-input"
+                                            placeholder="Type a message...">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" id="mobile-chat-send">Send</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="mobile-users-content" role="tabpanel">
+                                    <h6 class="mb-3">Users in Room</h6>
+                                    <ul id="mobile-users-list" class="list-unstyled"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/room.js"></script>
+    <script src="/js/chat.js"></script>
+</body>
+
+</html>

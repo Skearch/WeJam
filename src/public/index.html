@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Room App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="text-center mb-0">🎵 Music Room</h1>
+                        <p class="text-center text-muted mb-0">Listen to music together!</p>
+                    </div>
+                    <div class="card-body">
+                        <div id="usernameSection">
+                            <div class="form-group">
+                                <label for="username">Enter your username:</label>
+                                <input type="text" class="form-control" id="username" placeholder="Your username" required>
+                            </div>
+                            <button id="setUsername" class="btn btn-primary btn-block">Continue</button>
+                        </div>
+                        <div id="roomSection" style="display: none;">
+                            <h5 class="mb-3">Welcome, <span id="displayUsername"></span>!</h5>
+                            
+                            <div class="mb-4">
+                                <h6>Create a New Room</h6>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="newRoomId" placeholder="Enter room name">
+                                    <div class="input-group-append">
+                                        <button id="createRoom" class="btn btn-success">Create</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <h6>Join Existing Room</h6>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="joinRoomId" placeholder="Enter room name">
+                                    <div class="input-group-append">
+                                        <button id="joinRoom" class="btn btn-info">Join</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="message" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
